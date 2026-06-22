@@ -28,10 +28,10 @@
             <button type="submit" style="width:max-content; padding: 6px;">Login</button>
         </form>
         <p>don't have an account? <a href="./signup" style="color:white;">signUp!</a></p> 
-        <% if (locals.message) { %> 
-                <strong id="message" style="color: red;"><%= message %></strong>
-                <a href="./signup" style="color:white;">signUp!</a>
-            <% } %>
+        <% if (typeof message !== 'undefined' && message) { %>
+            <strong id="message" style="color: red;"><%= message %></strong>
+            <a href="./signup" style="color:white;">signUp!</a>
+        <% } %>
     </div>
 </body>
 </html>

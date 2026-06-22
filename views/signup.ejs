@@ -34,7 +34,9 @@
             <button type="submit">SignUp</button>
             
             <% if (locals.message) { %> 
-                <strong id="message" style="color: red;"><%= message %></strong>
+                <% if (typeof message !== 'undefined' && message) { %>
+                    <strong id="message" style="color: red;"><%= message %></strong>
+                <% } %>
             <% } %>
         </form>
     </div>
