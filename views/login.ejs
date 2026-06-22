@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css"/>
+    <title>Login page</title>
+</head>
+<body>
+    <div class="container">
+        <h2 style="background-color: cornflowerblue; border-radius: 3px; padding: 3px; color: black;">Login...</h2>
+        <form method="post" action="">
+            <div class="field-container">
+                <label>Email:</label><input name="email" type="email" id="inputbar"/>
+            </div>
+            <br/><br/>
+            <div class="field-container">
+                <label>Role:</label>
+                <select name="role" required>
+                    <option value="user">User</option>
+                    <option value="admin">Admin</option>
+                </select>
+            </div><br/>
+            <div class="field-container">
+                <label>Password:</label><input name="password" type="password" id="inputbar"/>
+            </div>
+            <br/><br/>
+            <button type="submit" style="width:max-content; padding: 6px;">Login</button>
+        </form>
+        <p>don't have an account? <a href="./signup" style="color:white;">signUp!</a></p> 
+        <% if (locals.message) { %> 
+                <strong id="message" style="color: red;"><%= message %></strong>
+                <a href="./signup" style="color:white;">signUp!</a>
+            <% } %>
+    </div>
+</body>
+</html>

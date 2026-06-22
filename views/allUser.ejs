@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/style.css"/>
+</head>
+<body>
+    <div class="container">
+        <% if (allUsers && allUsers.length > 0) { %>
+            <h2>All Users</h2>
+            <% allUsers.forEach((user) => { %>
+                
+                <div class="field-container">
+                    <label>Email: <%= user.email %></label>
+                </div>
+            <%}) %>
+        <% } else { %>
+            <p>No users found</p>
+        <% } %>
+    </div>
+</body>
+</html>
