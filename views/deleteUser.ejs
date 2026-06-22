@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete</title>
+    <link rel="stylesheet" href="/style.css"/>
+    <script>
+        function handleDeleteSuccess() {
+            alert('User deleted successfully');
+            window.location.href = '/admin/home';
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2 style="background-color: cornflowerblue; border-radius: 3px; padding: 3px; color: black;">Delete User</h2>
+        <form method="post" action="/admin/delete-user">
+            <div class="field-container">
+                <label>Email:</label><input name="email" type="email" id="inputbar"/>
+            </div>
+            <br/><br/>
+            <button type="submit" style="width:max-content; padding: 6px;">Delete</button>
+        </form>
+    </div>
+    <% if (typeof showAlert !== 'undefined' && showAlert && typeof status !== 'undefined' && status) { %>
+        <script>
+            handleDeleteSuccess();
+        </script>
+    <% } %>
+</body>
+</html>

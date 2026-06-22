@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp page</title>
+    <link rel="stylesheet" href="/style.css"/>
+</head>
+<body>
+    <div class="container">
+        <h2 style="background-color: cornflowerblue; border-radius: 3px; padding: 3px; color: black;">SignUp...</h2>
+        <form method="post" action="/signup">
+            <div class="field-container">
+                <label>Name:</label><input name="name" type="text" required/>
+            </div><br/><br/>
+
+            <div class="field-container">
+                <label>Email:</label><input name="email" type="email" required/>
+            </div><br/><br/>
+
+            <!-- Added Role Dropdown -->
+            <div class="field-container">
+                <label>Role:</label>
+                <select name="role" required>
+                    <option value="user">User</option>
+                    <option value="admin">Admin</option>
+                </select>
+            </div><br/><br/>
+
+            <div class="field-container">
+                <label>Password:</label><input name="password" type="password" required/>
+            </div><br/><br/>    
+
+            <button type="submit">SignUp</button>
+            
+            <% if (locals.message) { %> 
+                <strong id="message" style="color: red;"><%= message %></strong>
+            <% } %>
+        </form>
+    </div>
+</body>
+</html>
