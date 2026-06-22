@@ -1,12 +1,16 @@
 import express from 'express'
 import connectMogoose from './database/db.js'
+import 'dotenv/config'
+
 const app = express()
-const port = 3000
+const port = process.env.PORT || 3000
 
 app.listen(port, ()=>console.log(`server started! at port:${port}`));
 
-// connect to db
-connectMogoose("mongodb+srv://prodhruvpraj999_db_user:ASkXfzIQph8N3XzL@cluster0.g5rw1uu.mongodb.net/?appName=Cluster0","AuthDb");
+// connect to db using environment variable MONGO_URI
+// Set MONGO_URI in your .env file, e.g.:
+// MONGO_URI=mongodb+srv://user:pass@cluster0.example.mongodb.net/?retryWrites=true&w=majority
+connectMogoose(process.env.MONGO_URI, process.env.DB_NAME || 'AuthDb');
 
 // middleware for reading submited key-value pairs
 app.use(express.urlencoded({extended:true}))
