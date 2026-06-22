@@ -44,7 +44,8 @@ export const loginUser = async (req,res)=>{
     if(user){
         // Check if selected role matches user's role
         if (user.role !== role) {
-            return res.render('login', {message: `Invalid role selected. You are registered as a ${user.role}.`});
+            const msg = encodeURIComponent(`Invalid role selected. You are registered as a ${user.role}.`);
+            return res.redirect(`/login?error=${msg}`);
         }
         
         const validUser = await bcrypt.compare(password,user.password);
@@ -69,10 +70,16 @@ export const loginUser = async (req,res)=>{
                 return res.redirect('/login');
             }
         }
-        else res.render('login',{message:`please enter valid credential`});
+        else {
+            const msg = encodeURIComponent('please enter valid credential');
+            return res.redirect(`/login?error=${msg}`);
+        }
     }
     // if no email found in db
-    else if(!user) res.render('login',{message: 'Email not found. Please signup first...'});
+    else if(!user) {
+        const msg = encodeURIComponent('Email not found. Please signup first...');
+        return res.redirect(`/login?error=${msg}`);
+    }
 }
 
 export const showAllUser = async (req, res) => {

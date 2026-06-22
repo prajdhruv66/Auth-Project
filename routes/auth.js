@@ -5,7 +5,8 @@ import { authMiddleware } from '../middlewares/auth.js'
 const authRouter = express.Router()
 
 authRouter.get('/login', (req, res) => {
-    return res.render('login');
+    const message = req.query.error; // shown only when redirected with error
+    return res.render('login', { message });
 });
 
 authRouter.get('/signup', (req, res) => {
