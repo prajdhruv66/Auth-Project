@@ -93,7 +93,9 @@ export const showAllUser = async (req, res) => {
     }
 
     try {
-        const allUsers = await User.find({ role: 'user' });
+        const allUsers = await User.find({ role: 'user' })
+            .select('name email')
+            .sort({ name: 1 });
 
         return res.render('allUser', { allUsers });
     } catch (error) {
