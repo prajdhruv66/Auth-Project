@@ -1,12 +1,16 @@
 import express from 'express'
-import { createUser, deleteUser, loginUser, showAllUser } from '../controllers/user.js'
-import { authMiddleware } from '../middlewares/auth.js'
+import { createUser, loginUser } from '../controllers/user.js'
 
 const authRouter = express.Router()
 
-authRouter.get('/login', (req, res) => {
-    const message = req.query.error; // shown only when redirected with error
+authRouter.get('/', (req, res) => {
+    const message = req.query.error;
     return res.render('login', { message });
+});
+
+authRouter.get('/login', (req, res) => {
+    const message = req.query.error;
+    return res.redirect(message ? `/?error=${message}` : '/');
 });
 
 authRouter.get('/signup', (req, res) => {
@@ -15,18 +19,6 @@ authRouter.get('/signup', (req, res) => {
 
 authRouter.post('/signup', createUser);
 
-// Allow POST to /login (root) so the login form can submit to the
-// current path (action="") when rendered at /login.
 authRouter.post('/login', loginUser);
 
-authRouter.get('/allUser', authMiddleware, showAllUser)
-
-authRouter.get('/deleteUser',(req,res)=>{
-    return res.render('deleteUser');
-})
-authRouter.post('/deleteUser',deleteUser);
-authRouter.post('/allUser',showAllUser);
-authRouter.get('/dashboard',(req,res)=>{
-    return res.render('dashboard');
-})
 export default authRouter;

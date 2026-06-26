@@ -8,8 +8,12 @@
 </head>
 <body>
     <h1><%= user.name %>, welcome to home page...</h1>
+    <p>Your role: <strong><%= user.role %></strong></p>
     <a href="/dashboard">Go to dashboard</a><br/><br/>
-    <a href="/deleteUser">Delete User</a><br/><br/>
-    <a href="/allUser">acess all Users</a>
+    <% if (user.role === 'admin') { %>
+        <a href="/admin/home">Go to admin home</a><br/><br/>
+        <a href="/admin/delete-user">Delete User</a><br/><br/>
+        <a href="/admin/show-all-user">Access all Users</a>
+    <% } %>
 </body>
 </html>

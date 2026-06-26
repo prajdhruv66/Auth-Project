@@ -24,7 +24,7 @@ export const createUser = async (req,res)=>{
                 password:hashedPassword,
                 role:role
             })
-            if(userData) res.redirect('/login');
+            if(userData) res.redirect('/');
             else res.redirect('/signup');
         }
         else if(user){
@@ -45,7 +45,7 @@ export const loginUser = async (req,res)=>{
         // Check if selected role matches user's role
         if (user.role !== role) {
             const msg = encodeURIComponent(`Invalid role selected. You are registered as a ${user.role}.`);
-            return res.redirect(`/login?error=${msg}`);
+            return res.redirect(`/?error=${msg}`);
         }
         
         const validUser = await bcrypt.compare(password,user.password);
@@ -63,7 +63,7 @@ export const loginUser = async (req,res)=>{
                 if (user.role === "admin") {
                     res.redirect("/admin/home");
                 } else {
-                    res.redirect("/user/home");
+                    res.redirect("/home");
                 } 
             } catch (error) {
                 console.log(error.message);
@@ -72,13 +72,13 @@ export const loginUser = async (req,res)=>{
         }
         else {
             const msg = encodeURIComponent('please enter valid credential');
-            return res.redirect(`/login?error=${msg}`);
+            return res.redirect(`/?error=${msg}`);
         }
     }
     // if no email found in db
     else if(!user) {
         const msg = encodeURIComponent('Email not found. Please signup first...');
-        return res.redirect(`/login?error=${msg}`);
+        return res.redirect(`/?error=${msg}`);
     }
 }
 

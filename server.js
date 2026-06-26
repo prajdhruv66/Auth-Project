@@ -33,6 +33,6 @@ import router from './routes/user.js';
 import adminRouter from './routes/admin.js';
 import authRouter from './routes/auth.js';
 
-app.use('/user',router);
-app.use('/admin',adminRouter);
-app.use('/',authRouter);
+app.use('/admin', adminRouter);
+app.use('/', authRouter);
+app.use('/', router);

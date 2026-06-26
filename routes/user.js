@@ -1,21 +1,14 @@
 import express from 'express'
-import { createUser,loginUser } from '../controllers/user.js';
-import { authMiddleware } from '../middlewares/auth.js';
-const router= express.Router()
+import { authMiddleware, restrictTo } from '../middlewares/auth.js';
+const router = express.Router()
 
-
-
-// routes
-
-router.get('/home',authMiddleware,(req,res)=>{
-    res.render('home.ejs')
+// user and admin can both access user-facing pages
+router.get('/home', authMiddleware, restrictTo('user', 'admin'), (req, res) => {
+    res.render('home', { user: res.locals.user });
 })
 
-router.get('/dashboard',authMiddleware,(req,res)=>{
-    res.render('dashboard.ejs');
+router.get('/dashboard', authMiddleware, restrictTo('user', 'admin'), (req, res) => {
+    res.render('dashboard', { user: res.locals.user });
 })
-
-router.post('/signup',createUser);
-router.post('/login',loginUser);
 
 export default router

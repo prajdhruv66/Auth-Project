@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <h2 style="background-color: cornflowerblue; border-radius: 3px; padding: 3px; color: black;">Login...</h2>
-        <form method="post" action="">
+        <form method="post" action="/login">
             <div class="field-container">
                 <label>Email:</label><input name="email" type="email" id="inputbar"/>
             </div>
@@ -27,7 +27,7 @@
             <br/><br/>
             <button type="submit" style="width:max-content; padding: 6px;">Login</button>
         </form>
-        <p>don't have an account? <a href="./signup" style="color:white;">signUp!</a></p> 
+        <p>don't have an account? <a href="/signup" style="color:white;">signUp!</a></p> 
         <% if (typeof message !== 'undefined' && message) { %>
             <strong id="message" style="color: red;"><%= message %></strong>
             <a href="./signup" style="color:white;">signUp!</a>
